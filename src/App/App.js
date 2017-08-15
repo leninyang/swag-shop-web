@@ -32,8 +32,12 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Welcome to The Swag Shop</h2>
         </div>
-        <div className="App-main">
-          <Product price="4.23" title="Cool toy Gun" imgUrl="http://pop.h-cdn.co/assets/cm/15/05/54ca62c3d99f0_-_waterguns-5.jpg"/>
+        <div className="container App-main">
+          <div className="row">
+            <Product className="col-sms-4" price="4.23" title="Cool toy Gun" imgUrl="http://pop.h-cdn.co/assets/cm/15/05/54ca62c3d99f0_-_waterguns-5.jpg"/>
+            <Product className="col-sms-4" price="4.23" title="Cool toy Gun" imgUrl="http://pop.h-cdn.co/assets/cm/15/05/54ca62c3d99f0_-_waterguns-5.jpg"/>
+            <Product className="col-sms-4" price="4.23" title="Cool toy Gun" imgUrl="http://pop.h-cdn.co/assets/cm/15/05/54ca62c3d99f0_-_waterguns-5.jpg"/>
+          </div>
         </div>
       </div>
     );
