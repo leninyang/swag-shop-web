@@ -7,24 +7,45 @@ import Product from '../product/product.js';
 const http = new HttpService();
 
 class App extends Component {
-
+  // Where things are first called
   constructor(props) {
     super(props);
 
-    //Bind functions
+    // 1) States can change
+    this.state = {products:[]};
+
+    // Bind functions
     this.loadData = this.loadData.bind(this);
+    this.productList = this.productList.bind(this);
 
     this.loadData();
   }
 
+  // 2) Loading data
   loadData = () => {
-    http.getProducts().then(products => {
-      console.log(products);
+    // "this" is inside promise so we need self
+    var self = this;
+    http.getProducts().then(data => {
+      // 3) Fetching data from our server and goes into products array
+      self.setState({products: data})
     }, err => {
 
     });
   }
 
+  // 5) Dynamically produces list using .map
+  productList = () => {
+    const list = this.state.products.map((product) =>
+      // Pass data into different props
+      <div className="col-sms-4" key={product._id}>
+        <Product title={product.title} price={product.price} imgUrl={product.imgUrl}/>
+      </div>
+  );
+
+    return(list);
+  }
+
+  // 4) Render function called and goes down to productList()
   render() {
     return (
       <div className="App">
@@ -34,9 +55,7 @@ class App extends Component {
         </div>
         <div className="container App-main">
           <div className="row">
-            <Product className="col-sms-4" price="4.23" title="Cool toy Gun" imgUrl="http://pop.h-cdn.co/assets/cm/15/05/54ca62c3d99f0_-_waterguns-5.jpg"/>
-            <Product className="col-sms-4" price="4.23" title="Cool toy Gun" imgUrl="http://pop.h-cdn.co/assets/cm/15/05/54ca62c3d99f0_-_waterguns-5.jpg"/>
-            <Product className="col-sms-4" price="4.23" title="Cool toy Gun" imgUrl="http://pop.h-cdn.co/assets/cm/15/05/54ca62c3d99f0_-_waterguns-5.jpg"/>
+            {this.productList()}
           </div>
         </div>
       </div>
