@@ -2,8 +2,12 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import HttpService from '../services/http-service';
-import Product from '../product/product.js';
 
+// Components
+import Product from '../product/product.js';
+import WishList from '../wishlist/wishlist.js';
+
+// Services
 const http = new HttpService();
 
 class App extends Component {
@@ -33,7 +37,7 @@ class App extends Component {
     });
   }
 
-  // 5) Dynamically produces list using .map
+  // 5) Dynamically produces a list of products using .map
   productList = () => {
     const list = this.state.products.map((product) =>
       // Pass data into different props
@@ -53,9 +57,17 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Welcome to The Swag Shop</h2>
         </div>
-        <div className="container App-main">
+        <div className="container-fluid App-main">
           <div className="row">
-            {this.productList()}
+            <div className="col-sm-8">
+              <div className="row">
+                {this.productList()}
+              </div>
+            </div>
+            <div className="col-sm-4">
+              <WishList />
+            </div>
+
           </div>
         </div>
       </div>
