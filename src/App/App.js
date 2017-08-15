@@ -33,7 +33,7 @@ class App extends Component {
           <h2>Welcome to The Swag Shop</h2>
         </div>
         <div className="App-main">
-          <Product></Product>
+          <Product price="4.23" title="Cool toy Gun" imgUrl="http://pop.h-cdn.co/assets/cm/15/05/54ca62c3d99f0_-_waterguns-5.jpg"/>
         </div>
       </div>
     );
